@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Moodify",
+    "code": "moodify",
+    "year": 2023,
+    "shortDescription": "A full-stack web music platform, using Deezer API.",
+    "coverImage": "CalcCover.webp",
+    "projectImage": "CalcImage.webp",
+    "usedTech": ["Angular", "Nginx", "Spring Boot", "PostgreSQL", "Docker"],
+    "githubRepo": "https://github.com/VincentStriegel/Moodify",
+    "status": "Complete"
+  },
+  {
+    "title": "Pathfinder",
+    "code": "pathfinder",
+    "year": 2022,
+    "shortDescription": "Finding the shortest path in a maze using A* algorithm.",
+    "coverImage": "PathCover.webp",
+    "projectImage": "PathGif.webp",
+    "usedTech": ["Java"],
+    "status": "Complete"
+  }
+]

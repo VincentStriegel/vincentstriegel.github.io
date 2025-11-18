@@ -1,0 +1,43 @@
+---
+import TechIcons from "../components/TechIcons.astro";
+import Layout from "../layouts/Layout.astro";
+
+const TECH_ICONS = [
+  "JavaScript",
+  "TypeScript",
+  "HTML",
+  "CSS",
+  "Tailwind CSS",
+  "Astro",
+  "Angular",
+  "React.js",
+  "Vue.js",
+  "Python",
+  "FastAPI",
+  "Java",
+  "Spring Boot",
+  "PostgreSQL",
+  "MySQL",
+  "ArangoDB",
+  "Docker",
+];
+---
+
+<Layout title="About">
+  <section class="container">
+    <h1>Hi, <br />I'm Vincent.</h1>
+    <p>
+      I have a bachelor's degree in computer science and several years of
+      experience as a working student developing fullstack applications.
+    </p>
+
+    <p>
+      I am passionate about everything computer related, from the internal
+      hardware to the software that makes it all work. My focus lies with
+      writing code to create programs that solve problems and make life easier.
+    </p>
+
+    <h2>Languages and technologies I have worked with:</h2>
+    <TechIcons techIcons={TECH_ICONS} />
+  </section>
+</Layout>

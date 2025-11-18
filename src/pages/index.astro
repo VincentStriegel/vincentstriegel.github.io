@@ -1,0 +1,36 @@
+---
+import ProjectCard from "../components/ProjectCard.astro";
+import Layout from "../layouts/Layout.astro";
+import { projects } from "../data/projects";
+
+const randomProjects = projects.sort(() => 0.5 - Math.random()).slice(0, 4);
+---
+
+<Layout title="Home">
+  <section>
+    <img class="homepage-logo" src="/logo.svg" alt="Portfolio" />
+    <div class="project-grid">
+      {randomProjects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .homepage-logo {
+    width: 100%;
+    max-width: 90vw;
+    height: 50vh;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    object-fit: contain;
+  }
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+    max-width: calc(3 * 350px + 2 * 2rem);
+    margin: 0 auto;
+  }
+</style>

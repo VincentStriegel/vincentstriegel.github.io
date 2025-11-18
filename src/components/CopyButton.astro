@@ -1,0 +1,65 @@
+---
+interface Props {
+  textToCopy: string;
+  title: string;
+}
+
+const { textToCopy, title } = Astro.props;
+---
+
+<button
+  class="copy-btn"
+  type="button"
+  data-text={textToCopy}
+  aria-label={title}
+  title={title}
+>
+  <img class="btn-image" src="/icons/copy.svg" alt="" />
+</button>
+
+<style>
+  .copy-btn {
+    background: white;
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+  .copy-btn img {
+    padding: 0.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+  }
+  a {
+    color: var(--font-color);
+    text-decoration: none;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll(".copy-btn");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const text = button.getAttribute("data-text");
+      const image = button.querySelector(".btn-image");
+
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText && text) {
+          await navigator.clipboard.writeText(text);
+        }
+        if (image) {
+          image.setAttribute("src", "/icons/check.svg");
+          setTimeout(() => {
+            image.setAttribute("src", "/icons/copy.svg");
+          }, 1500);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  });
+</script>

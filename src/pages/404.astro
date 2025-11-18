@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="404">
+  <section class="container text-center">
+    <h1>404 - Page Not Found</h1>
+    <p>Sorry, the page you're looking for doesn't exist.</p>
+    <a href="/" class="home-link">Go back home</a>
+  </section>
+</Layout>
+
+<style>
+  .text-center {
+    text-align: center;
+  }
+
+  .home-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: rgb(var(--accent-light));
+    color: black;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: transform 0.2s;
+  }
+
+  .home-link:hover {
+    transform: scale(1.05);
+  }
+</style>

@@ -1,0 +1,48 @@
+---
+import fs from "fs";
+import path from "path";
+const iconsDir = path.resolve("./public/icons/tech_icons");
+
+interface Props {
+  techIcons: string[];
+}
+
+const { techIcons } = Astro.props;
+
+function iconFor(tech: string): string {
+  const file = tech.toLowerCase().replace(/\s+/g, "_");
+  const svg = `${file}.svg`;
+  const png = `${file}.png`;
+  if (fs.existsSync(path.join(iconsDir, svg)))
+    return `/icons/tech_icons/${svg}`;
+  if (fs.existsSync(path.join(iconsDir, png)))
+    return `/icons/tech_icons/${png}`;
+  return `placeholder.svg`;
+}
+---
+
+<section class="icons-container">
+  {
+    techIcons.map((icon) => (
+      <img src={iconFor(icon)} alt={icon} title={icon} class="tech-icon" />
+    ))
+  }
+</section>
+
+<style>
+  .tech-icon {
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 0.5rem;
+  }
+  .tech-icon:hover {
+    transform: scale(1.05);
+  }
+  .icons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>

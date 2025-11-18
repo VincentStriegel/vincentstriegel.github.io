@@ -1,0 +1,33 @@
+---
+import { projects } from "../data/projects";
+import ProjectCard from "../components/ProjectCard.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Projects">
+  <section>
+    <h1>Projects</h1>
+    <div class="projects-grid">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0;
+  }
+  @media (max-width: 1280px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

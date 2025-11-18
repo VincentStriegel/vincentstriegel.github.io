@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Generated files
+.astro/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.production
+
+# OS files
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Package manager files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock

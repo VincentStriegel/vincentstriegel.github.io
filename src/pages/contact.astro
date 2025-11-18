@@ -1,0 +1,35 @@
+---
+import CopyButton from "../components/CopyButton.astro";
+import Layout from "../layouts/Layout.astro";
+
+const GITHUB_URL = "https://github.com/VincentStriegel";
+const EMAIL_ADDRESS = "vincentstriegel@gmail.com";
+---
+
+<Layout title="Contact">
+  <section class="container">
+    <h1>Contact Me:</h1>
+    <ul class="links">
+      <li>
+        <strong>Email:</strong>
+        <a href={`mailto:${EMAIL_ADDRESS}`}>{EMAIL_ADDRESS}</a>
+        <CopyButton textToCopy={EMAIL_ADDRESS} title="Copy Email Address" />
+      </li>
+      <li>
+        <strong>GitHub:</strong>
+        <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer"
+          >{GITHUB_URL}</a
+        >
+        <CopyButton textToCopy={GITHUB_URL} title="Copy GitHub URL" />
+      </li>
+    </ul>
+  </section>
+</Layout>
+
+<style>
+  li {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+</style>

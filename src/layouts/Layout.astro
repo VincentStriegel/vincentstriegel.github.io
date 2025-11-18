@@ -1,0 +1,89 @@
+---
+import Header from "../components/Header.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link
+      rel="preload"
+      href="/fonts/Roboto-Bold.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>Portfolio - {title}</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+<style is:global>
+  @font-face {
+    font-family: "Roboto";
+    src: url("/fonts/Roboto-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Roboto";
+    src: url("/fonts/Roboto-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: block;
+  }
+  :root {
+    --font-color: white;
+    --accent: #b272ff;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(135deg, #313131 0%, #191919 100%);
+  }
+  html {
+    font-family: "Roboto", sans-serif;
+    background: #171717;
+    --secondary-background: #212121;
+    color: var(--font-color);
+  }
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  code {
+    font-family: monospace;
+  }
+  ul {
+    font-size: larger;
+  }
+  a {
+    color: rgb(var(--accent-light));
+  }
+  .text {
+    color: var(--font-color);
+  }
+  main {
+    max-width: 1920px;
+    margin: auto;
+    padding: 1rem;
+  }
+  .container {
+    max-width: 70ch;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+</style>

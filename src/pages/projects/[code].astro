@@ -1,0 +1,137 @@
+---
+import { getEntry, render } from "astro:content";
+
+import projects from "../../../public/projects.json";
+import TechIcons from "../../components/TechIcons.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export function getStaticPaths() {
+  return [{ params: { code: "moodify" } }, { params: { code: "pathfinder" } }];
+}
+
+const { code } = Astro.params;
+const project = projects.find((project) => project.code === code);
+if (!project) {
+  throw new Error(`Project with code ${code} not found.`);
+}
+
+const projectDescription =
+  (await getEntry("projectDescriptions", `${project?.code}`)) ||
+  (() => {
+    throw new Error(`Project description for ${code} not found.`);
+  })();
+const { Content } = await render(projectDescription);
+---
+
+<Layout title={`Project: ${project?.title}`}>
+  <h1 class="project-title">Project: {project?.title}</h1>
+  <div class="project-grid">
+    <section class="project-main">
+      <img
+        class="project-image"
+        src={`/images/${project.coverImage}`}
+        onerror="this.src='/placeholder.svg'"
+        alt={project.title}
+      />
+      <div class="project-description">
+        <Content />
+      </div>
+      <div class="project-metadata">
+        <h3>Status: {project?.status}</h3>
+        <h3>Year: {project?.year}</h3>
+        {
+          project?.githubRepo && (
+            <a
+              href={project.githubRepo}
+              class="github-link"
+              title="GitHub Repository"
+            >
+              <img src="/icons/github.svg" alt="GitHub" />
+            </a>
+          )
+        }
+      </div>
+    </section>
+    <section class="project-tech-used">
+      <h2>Built With:</h2>
+      <TechIcons techIcons={project?.usedTech ?? []} />
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .project-metadata {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  .github-link img {
+    width: 40px;
+    height: 40px;
+  }
+  .github-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+  }
+
+  .github-link:hover {
+    transform: scale(1.1);
+  }
+  .project-tech-used {
+    grid-column: span 5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+  .project-main {
+    grid-column: span 5;
+    padding: 1rem;
+    background-color: var(--secondary-background);
+    border-radius: 8px;
+  }
+
+  .project-image {
+    float: left;
+    max-width: 60%;
+    width: auto;
+    height: auto;
+    margin-right: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 1020px) {
+    .project-image {
+      float: none;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+  }
+  .project-grid > * {
+    padding: 1rem;
+    background-color: var(--secondary-background);
+    border-radius: 8px;
+  }
+  .project-title {
+    padding: 0.5rem;
+  }
+  .project-grid {
+    max-width: 100%;
+    display: grid;
+    color: var(--font-color);
+    grid-gap: 1rem;
+  }
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+  }
+
+  .project-description {
+    overflow: auto;
+  }
+</style>

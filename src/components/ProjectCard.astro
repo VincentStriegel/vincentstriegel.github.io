@@ -1,0 +1,43 @@
+---
+import type { Project } from "../types/Project";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<a class="projectContainer" href={`/projects/${project.code}`}>
+  <h2>{project.title}</h2>
+  <p>{project.shortDescription}</p>
+  <img
+    src={`/images/${project.coverImage}`}
+    onerror="this.src='placeholder.svg'"
+    alt={project.title}
+  />
+</a>
+
+<style>
+  .projectContainer {
+    background: rgb(35, 35, 35);
+    padding: 1rem;
+    border-radius: 8px;
+    transition: transform 0.2s;
+    color: var(--font-color);
+  }
+  .projectContainer:hover {
+    transform: scale(1.02);
+    border: 3px solid rgba(var(--accent-light), 0.5);
+  }
+  h2 {
+    margin-top: 0;
+  }
+  img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  a {
+    text-decoration: none;
+  }
+</style>
