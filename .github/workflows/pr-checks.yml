@@ -1,0 +1,38 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Build, Lint, Format, and Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run lint
+        run: npm run lint
+        
+      - name: Check formatting
+        run: npx prettier --check "**/*.{astro,ts,js,json,md,mjs,cjs}" "!node_modules/**" "!dist/**" "!.astro/**"
+        
+      - name: Build
+        run: npm run build
+        
+      - name: Run tests
+        run: npm run test:unit -- --run
