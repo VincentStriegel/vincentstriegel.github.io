@@ -29,7 +29,7 @@ const { Content } = await render(projectDescription);
     <section class="project-main">
       <img
         class="project-image"
-        src={`/images/${project.projectImage}`}
+        src={`/images/${project.projectImage ?? project.coverImage}`}
         onerror="this.src='/placeholder.svg'"
         alt={project.title}
       />
