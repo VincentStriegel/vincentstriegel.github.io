@@ -35,21 +35,21 @@ const { Content } = await render(projectDescription);
       />
       <div class="project-description">
         <Content />
-      </div>
-      <div class="project-metadata">
-        <h3>Status: {project?.status}</h3>
-        <h3>Year: {project?.year}</h3>
-        {
-          project?.githubRepo && (
-            <a
-              href={project.githubRepo}
-              class="github-link"
-              title="GitHub Repository"
-            >
-              <img src="/icons/github.svg" alt="GitHub" />
-            </a>
-          )
-        }
+        <div class="project-metadata">
+          <h3>Status: {project?.status}</h3>
+          <h3>Year: {project?.year}</h3>
+          {
+            project?.githubRepo && (
+              <a
+                href={project.githubRepo}
+                class="github-link"
+                title="GitHub Repository"
+              >
+                <img src="/icons/github.svg" alt="GitHub" />
+              </a>
+            )
+          }
+        </div>
       </div>
     </section>
     <section class="project-tech-used">
@@ -99,7 +99,7 @@ const { Content } = await render(projectDescription);
     max-width: 60%;
     width: auto;
     height: auto;
-    margin-right: 2.5rem;
+    margin-right: 1.5rem;
     margin-bottom: 1rem;
   }
 
@@ -131,7 +131,7 @@ const { Content } = await render(projectDescription);
     grid-auto-rows: minmax(100px, auto);
   }
 
-  .project-description {
-    overflow: auto;
+  .project-description :global(ul) {
+    overflow: hidden;
   }
 </style>
