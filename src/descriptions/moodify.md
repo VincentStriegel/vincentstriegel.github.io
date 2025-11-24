@@ -1,19 +1,25 @@
 # Moodify
 
-Is a web based music player which utilizes the Deezer API to stream music. The application was created for the Software Project course during my studies together with an other student.
+**Moodify** is a web-based music player that uses the Deezer API to stream music. The application was developed as part of a Software Project course during my studies, together with another student.
 
 ## Features
 
-- User Accounts
-- Query Songs
-- Likes & Playlists
-- Song Recommendations
-- Party Rooms
+- User accounts
+- Song search
+- Likes & playlists
+- Personalized recommendations
+- Shared “Party Rooms” for group listening
 
 ## Architecture
 
-Moodify is a 3 layer application with a frontend built with Angular, a backend built with Spring Boot and a PostgreSQL database. Songs were fetched using the DeezerAPI.
+Moodify follows a classic three-layer architecture:
+
+- **Frontend:** Angular
+- **Backend:** Spring Boot
+- **Database:** PostgreSQL
+
+Music data is retrieved via the Deezer API.
 
 ### Party Rooms
 
-Users can crete party rooms and invite other users to listen to music together, users can suggest new songs to be played and vote on them. Party rooms use WebSocket to facilitate the connection.
+Users can create Party Rooms and invite others to enjoy music together in real time. Participants can suggest tracks, vote on upcoming songs, and collaboratively shape the playlist. Real-time interactions are enabled through WebSockets.
