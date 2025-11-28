@@ -4,6 +4,6 @@ import { getViteConfig } from "astro/config";
 export default getViteConfig({
   test: {
     // Exclude Playwright tests
-    exclude: ['node_modules', 'tests/**/*'],
+    exclude: ["node_modules", "tests/**/*"],
   },
 });
