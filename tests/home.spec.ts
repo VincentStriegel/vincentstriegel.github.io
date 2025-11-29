@@ -26,7 +26,7 @@ test("get about link", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Hi" })).toBeVisible();
 });
 
-test("get projects link", async ({ page }) => {
+test("navigates to projects page", async ({ page }) => {
   await page.goto("/");
   // Click the get projects link.
   await page.getByRole("link", { name: "Projects" }).click();
