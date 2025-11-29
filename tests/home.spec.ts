@@ -16,7 +16,7 @@ test("navigation has expected links", async ({ page }) => {
   await expect(page.getByRole("link", { name: "Contact" })).toBeVisible();
 });
 
-test("get about link", async ({ page }) => {
+test("navigates to about page", async ({ page }) => {
   await page.goto("/");
 
   // Click the get about link.

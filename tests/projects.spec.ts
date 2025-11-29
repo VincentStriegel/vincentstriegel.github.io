@@ -18,9 +18,9 @@ test("project links work", async ({ page }) => {
   await page.goto("/projects");
   // Click the first project link
   const firstProjectLink = page.getByRole("link", { name: /project/i }).first();
+  const projectTitle = await firstProjectLink.textContent();
   await firstProjectLink.click();
   // Expects page to have a heading with the project title
-  const projectTitle = await firstProjectLink.textContent();
   await expect(
     page.getByRole("heading", { name: projectTitle! }),
   ).toBeVisible();
