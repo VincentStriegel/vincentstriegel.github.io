@@ -8,15 +8,17 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<a class="projectContainer" href={`/projects/${project.code}`}>
-  <h2>{project.title}</h2>
-  <p>{project.shortDescription}</p>
-  <img
-    src={`/images/${project.coverImage}`}
-    onerror="this.src='placeholder.svg'"
-    alt={project.title}
-  />
-</a>
+<article class="projectContainer">
+  <a href={`/projects/${project.code}`}>
+    <h2>{project.title}</h2>
+    <p>{project.shortDescription}</p>
+    <img
+      src={`/images/${project.coverImage}`}
+      onerror="this.src='placeholder.svg'"
+      alt={project.title}
+    />
+  </a>
+</article>
 
 <style>
   .projectContainer {
@@ -39,5 +41,6 @@ const { project } = Astro.props;
   }
   a {
     text-decoration: none;
+    color: inherit;
   }
 </style>
